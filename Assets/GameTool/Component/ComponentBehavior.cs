@@ -11,13 +11,14 @@ public class ComponentBehavior : MonoBehaviour
         ResetValue();
     }
 
+   
     protected virtual void Start()
     {
         LoadComponent();
         ResetValue();
     }
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         LoadComponent();
         ResetValue();

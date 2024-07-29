@@ -10,7 +10,7 @@ public class VanguardWeaponData : ScriptableObject
     public List<VanguardWeaponParam> Data;
 }
 [Serializable]
-public class VanguardWeaponParam : EntityParam
+public class VanguardWeaponParam : WeaponParam
 {
     public Area area;
 
@@ -51,5 +51,7 @@ public class VanguardWeaponParam : EntityParam
         }
         return attack;
     }
+
+  
 }
 

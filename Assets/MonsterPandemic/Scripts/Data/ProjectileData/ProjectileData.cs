@@ -1,11 +1,15 @@
 
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 [CreateAssetMenu(fileName = "ProjectileData", menuName = "Data/ProjectileData")]
 public class ProjectileData : ScriptableObject
 {
-  
+    public List<ProjectileParam> Data;
 }
-
+[Serializable]
 public class ProjectileParam : EntityParam
 {
     public Area area;
@@ -14,23 +18,28 @@ public class ProjectileParam : EntityParam
 
     public AttackRate attackRate;
     public float damageGrowthRate;
+    public MoveType moveType;
     public float GetSpeed(int objectLevel)
     {
         float speed = (objectLevel - level) * speedGrowthRate;
         switch (speedRate)
         {
-            case SpeedRate.Creeper:
+            case SpeedRate.TurtleSpeed:
                 return speed + 0.2f;
-            case SpeedRate.Stiff:
+            case SpeedRate.SlowPace:
                 return speed + 0.22f;
-            case SpeedRate.Basic:
+            case SpeedRate.ModerateSpeed:
                 return speed + 0.3f;
-            case SpeedRate.Hungry:
+            case SpeedRate.SwiftRate:
                 return speed + 0.4f;
-            case SpeedRate.Speedy:
+            case SpeedRate.RapidVelocity:
                 return speed + 0.59f;
-            case SpeedRate.Flightly:
+            case SpeedRate.TurboBoost:
                 return speed + 2.93f;
+            case SpeedRate.AgileFlow:
+                return speed + 10f;
+            case SpeedRate.LightningSprint:
+                return speed + 50f;
         }
 
         return speed;

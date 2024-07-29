@@ -7,6 +7,7 @@ public class Ctrl : ComponentBehavior
 {
 
     [SerializeField] protected Animator _animator;
+    
     protected override void LoadComponent()
     {
         base.LoadComponent();

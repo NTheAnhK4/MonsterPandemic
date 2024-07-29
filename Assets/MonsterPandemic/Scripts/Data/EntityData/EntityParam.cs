@@ -6,6 +6,16 @@ public class EntityParam
     public Range range;
 }
 
+public enum MoveType
+{
+    Straight,
+    Curved,
+    Bouncing,
+    Homing,
+    Spiral,
+    Split,
+    Blink,
+}
 public enum Usage
 {
     Automation,
@@ -30,12 +40,14 @@ public enum Range
 public enum SpeedRate
 {
     None,
-    Creeper,
-    Stiff,
-    Basic,
-    Hungry,
-    Speedy,
-    Flightly
+    TurtleSpeed,
+    SlowPace,
+    ModerateSpeed,
+    SwiftRate,
+    RapidVelocity,
+    TurboBoost,
+    AgileFlow,
+    LightningSprint
 }
 
 public enum AttackRate
