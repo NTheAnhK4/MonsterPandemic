@@ -1,4 +1,5 @@
 
+
 using UnityEngine;
 
 public abstract class MonsterCtrl : EntityCtrl
@@ -55,8 +56,9 @@ public abstract class MonsterCtrl : EntityCtrl
     {
        
         base.OnEnable();
-        isDead = false;
         animMachine = new AnimMachine();
+        isDead = false;
+        SetInitialAction();
        
     }
 
@@ -100,6 +102,7 @@ public abstract class MonsterCtrl : EntityCtrl
         isDead = false;
     }
 
+   
     protected override void Update()
     {
         base.Update();

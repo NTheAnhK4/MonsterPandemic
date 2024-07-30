@@ -51,7 +51,7 @@ public abstract class EntityCtrl : ComponentBehavior
     protected virtual void OnEnable()
     {
         actionMachine = new ActionMachine();
-        SetInitialAction();
+        
     }
 
     protected virtual void Update()
