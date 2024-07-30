@@ -9,6 +9,7 @@ public abstract class EntityCtrl : ComponentBehavior
     [SerializeField] protected string entityType;
     [SerializeField] protected ScriptableObject data;
     [SerializeField] protected int level;
+    protected float timeDespawn;
 
     public ScriptableObject Data => data;
 
@@ -27,6 +28,12 @@ public abstract class EntityCtrl : ComponentBehavior
         this.LoadData();
     }
 
+    protected override void ResetValue()
+    {
+        base.ResetValue();
+        this.ResetTimeDespawn();
+    }
+
     protected abstract void ResetEntityId();
     protected abstract void ResetEntityType();
 
@@ -37,13 +44,27 @@ public abstract class EntityCtrl : ComponentBehavior
         this.level = 1;
     }
 
+    protected virtual void ResetTimeDespawn()
+    {
+        
+    }
     protected virtual void OnEnable()
     {
         actionMachine = new ActionMachine();
+        SetInitialAction();
     }
 
     protected virtual void Update()
     {
         actionMachine.Update();
     }
+
+    public virtual void SetDespawn()
+    {
+        
+    }
+
+    public abstract void SetInitialAction();
+
+
 }

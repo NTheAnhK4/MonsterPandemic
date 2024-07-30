@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+
 
 public class MaleWalkerMonsterCtrl : MonsterCtrl
 {
@@ -16,6 +14,10 @@ public class MaleWalkerMonsterCtrl : MonsterCtrl
         this.entityType = "VanguardMonster";
     }
 
-   
+    protected override void ResetTimeDespawn()
+    {
+        this.timeDespawn = 1.4f;
+
+    }
 }
 

@@ -5,13 +5,14 @@ public class Attack : IAction
 {
     protected float _attackSpeed;
     protected float coolDown;
+    protected int attackCount;
     public Attack(float attackSpeed)
     {
         _attackSpeed = attackSpeed;
     }
     public virtual void Enter()
     {
-        
+        attackCount = 0;
     }
 
     public virtual void Exit()
@@ -23,6 +24,7 @@ public class Attack : IAction
     {
         if (coolDown < _attackSpeed) return;
         OnAttack();
+        attackCount++;
         coolDown = 0;
     }
 
@@ -34,5 +36,10 @@ public class Attack : IAction
     protected virtual void OnAttack()
     {
         
+    }
+
+    public int GetAttackCount()
+    {
+        return attackCount;
     }
 }

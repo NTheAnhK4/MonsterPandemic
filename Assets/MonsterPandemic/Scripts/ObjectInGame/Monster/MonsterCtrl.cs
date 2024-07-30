@@ -1,12 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+
 using UnityEngine;
 
 public abstract class MonsterCtrl : EntityCtrl
 {
     [SerializeField] protected Animator animator;
     protected AnimMachine animMachine;
+    protected bool isDead;
+
+    public bool IsDead
+    {
+        get => isDead;
+        set => isDead = value;
+    }
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -50,11 +55,12 @@ public abstract class MonsterCtrl : EntityCtrl
     {
        
         base.OnEnable();
+        isDead = false;
         animMachine = new AnimMachine();
-        this.SetMovement();
+       
     }
 
-    public void SetMovement()
+    public override void SetInitialAction()
     {
         animMachine.ChangeAnim(new BasicMoveAnim(animator));
         if (data is VanguardMonsterData vanguard)
@@ -82,4 +88,22 @@ public abstract class MonsterCtrl : EntityCtrl
     }
 
    
+    public override void SetDespawn()
+    {
+        animMachine.ChangeAnim(new BasicDeadAnim(animator));
+        
+        actionMachine.ChangeAction(new MonsterDespawner(
+            transform,
+            timeDespawn,
+            entityType
+            ));
+        isDead = false;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        
+        if(isDead) SetDespawn();
+    }
 }

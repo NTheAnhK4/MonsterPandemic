@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+
 
 public abstract class ProjectileCtrl : EntityCtrl
 {
@@ -20,13 +20,9 @@ public abstract class ProjectileCtrl : EntityCtrl
         if(data != null) Debug.Log(transform.name + " Load Data successful");
     }
 
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        SetMovement();
-    }
+    
 
-    public virtual void SetMovement()
+    public override void SetInitialAction()
     {
         if (data is not ProjectileData projectileData)
         {
@@ -54,5 +50,19 @@ public abstract class ProjectileCtrl : EntityCtrl
             projectileData.Data[entityId].GetDamage(level),
             damageReceiver
             ));
+    }
+
+    public override void SetDespawn()
+    {
+        actionMachine.ChangeAction(new ProjectileDespawner(
+            transform,
+            0
+            ));
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if(actionMachine.GetAttackCount() > 0) SetDespawn();
     }
 }

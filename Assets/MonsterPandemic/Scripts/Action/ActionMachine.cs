@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+
 
 public class ActionMachine
 {
@@ -18,5 +16,11 @@ public class ActionMachine
         if (curAction == null) return;
         curAction.UpdateLogic();
         curAction.UpdatePhysis();
+    }
+
+    public int GetAttackCount()
+    {
+        if (curAction is not Attack attack) return 0;
+        return attack.GetAttackCount();
     }
 }

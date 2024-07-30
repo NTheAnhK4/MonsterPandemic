@@ -99,6 +99,19 @@ public class DamageReceiver : ComponentBehavior
     public void Deduct(float damage)
     {
         curHp -= damage;
+        if(curHp <= 0)
+            OnDead();
+    }
+
+    protected virtual void OnDead()
+    {
+        if (ctrl is MonsterCtrl monsterCtrl) monsterCtrl.IsDead = true;
         
+    }
+
+    protected void OnEnable()
+    {
+       
+        ResetMaxHp();
     }
 }
