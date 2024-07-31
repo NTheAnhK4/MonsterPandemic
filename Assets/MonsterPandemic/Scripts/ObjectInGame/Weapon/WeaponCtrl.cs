@@ -61,13 +61,13 @@ public abstract class WeaponCtrl : EntityCtrl
       
         if (data is RangedWeaponData rangedWeaponData)
         {
+            var position = transform.position;
             actionMachine.ChangeAction(AttackFactory.CreateRangedAttack(
                 rangedWeaponData.Data[entityId].range,
                 rangedWeaponData.Data[entityId].GetAttackSpeed(level),
                 rangedWeaponData.Data[entityId].projectileName,
-                transform
+                new Vector3(position.x, position.y + 0.5f, position.z)
             ));
-           
         }
            
        
@@ -87,6 +87,12 @@ public abstract class WeaponCtrl : EntityCtrl
         isDead = false;
         SetInitialAction();
        
+    }
+    protected override void Update()
+    {
+        base.Update();
+        
+        if(isDead) SetDespawn();
     }
 
 }

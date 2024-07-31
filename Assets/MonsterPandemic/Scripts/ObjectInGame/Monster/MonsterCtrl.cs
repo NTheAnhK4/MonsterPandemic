@@ -112,7 +112,8 @@ public abstract class MonsterCtrl : EntityCtrl
             timeDespawn,
             entityType
             ));
-        isDead = false;
+        
+        
     }
 
    

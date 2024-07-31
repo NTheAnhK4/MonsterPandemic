@@ -38,12 +38,7 @@ public abstract class Radar : ComponentBehavior
         if(ctrl != null) Debug.Log(transform.name + " Load Ctrl successful");
     }
 
-    protected void Update()
-    {
-        ScanRadar();
-       
-        if(IsEnemy()) ctrl.SetEnemyDetectedAction(hit.transform.GetComponent<DamageReceiver>());
-    }
+   
 
     protected abstract void ScanRadar();
 
@@ -62,5 +57,29 @@ public abstract class Radar : ComponentBehavior
             return hit.collider.tag.Contains("Weapon");
         if (transform.tag.Contains("Weapon")) return hit.collider.tag.Contains("Monster");
         return false;
+    }
+
+    protected bool IsDead()
+    {
+        if (ctrl is ProjectileCtrl) return false;
+        if (ctrl is WeaponCtrl weaponCtrl) return weaponCtrl.IsDead;
+        if (ctrl is MonsterCtrl monsterCtrl) return monsterCtrl.IsDead;
+        return true;
+    }
+    protected virtual void SetEnemyDetectedAction()
+    {
+        if (!IsEnemy() || IsDead()) return;
+        ctrl.SetEnemyDetectedAction(hit.transform.GetComponent<DamageReceiver>());
+    }
+    protected virtual void SetInitialAction()
+    {
+        if (hit.collider != null || ctrl is ProjectileCtrl || IsDead()) return;
+        ctrl.SetInitialAction();
+    }
+    protected void Update()
+    {
+        ScanRadar();
+        SetEnemyDetectedAction();
+        SetInitialAction();
     }
 }

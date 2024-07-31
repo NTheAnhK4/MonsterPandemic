@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6697897849495701047
 Transform:
   m_ObjectHideFlags: 0
@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 2809415111063641810}
   - component: {fileID: 593878587416741707}
   - component: {fileID: 899962888448554665}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DamageReceiver
   m_TagString: Vanguard Monster
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.5}
+  m_Size: {x: 0.25, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &899962888448554665
 MonoBehaviour:
@@ -175,7 +175,7 @@ MonoBehaviour:
   rb: {fileID: 2809415111063641810}
   boxCollider2D: {fileID: 593878587416741707}
   maxHp: 10
-  curHp: 0
+  curHp: 10
 --- !u!1 &2798813588888310774
 GameObject:
   m_ObjectHideFlags: 0

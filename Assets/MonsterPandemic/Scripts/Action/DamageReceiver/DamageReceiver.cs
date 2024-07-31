@@ -57,7 +57,7 @@ public class DamageReceiver : ComponentBehavior
     {
         boxCollider2D.isTrigger = true;
         boxCollider2D.offset = new Vector2(0, 0f);
-        boxCollider2D.size = new Vector2(0.25f, 0.5f);
+        boxCollider2D.size = new Vector2(0.25f, 1f);
     }
 
     protected override void ResetValue()
@@ -106,7 +106,8 @@ public class DamageReceiver : ComponentBehavior
     protected virtual void OnDead()
     {
         if (ctrl is MonsterCtrl monsterCtrl) monsterCtrl.IsDead = true;
-        
+        if (ctrl is WeaponCtrl weaponCtrl) weaponCtrl.IsDead = true;
+
     }
 
     protected void OnEnable()

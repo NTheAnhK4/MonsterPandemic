@@ -17,7 +17,6 @@ public class MonsterDespawner : Despawner
         {
             case "VanguardMonster":
                 VanguardMonsterSpawner.Instance.DespawnObject(_obj);
-               
                 return;
         }
     }
