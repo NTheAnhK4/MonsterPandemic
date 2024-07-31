@@ -12,6 +12,7 @@ public class CloseAttack : Attack
 
     protected override void OnAttack()
     {
+        if (_damageReceiver == null) return;
         _damageReceiver.Deduct(_damage);
     }
 }

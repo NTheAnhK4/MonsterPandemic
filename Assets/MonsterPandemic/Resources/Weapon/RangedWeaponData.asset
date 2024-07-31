@@ -12,4 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e026cc04e12bf46a8c2df66a5efabf, type: 3}
   m_Name: RangedWeaponData
   m_EditorClassIdentifier: 
-  Data: []
+  Data:
+  - level: 1
+    name: Railgun Turret
+    range: 0
+    maxHp: 10
+    hpGrowthRate: 1
+    usage: 0
+    projectileName: K59
+    attackSpeed: 3
+    attackSpeedGrowthRate: -0.01

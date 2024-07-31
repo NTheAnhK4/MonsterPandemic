@@ -65,6 +65,6 @@ public abstract class EntityCtrl : ComponentBehavior
     }
 
     public abstract void SetInitialAction();
-
+    public abstract void SetEnemyDetectedAction(DamageReceiver damageReceiver);
 
 }

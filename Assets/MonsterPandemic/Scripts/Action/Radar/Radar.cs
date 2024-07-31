@@ -1,16 +1,34 @@
 
+using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Rigidbody2D))]
+
 public abstract class Radar : ComponentBehavior
 {
     [SerializeField] protected EntityCtrl ctrl;
-    [SerializeField] protected Rigidbody2D rb;
+    [SerializeField] protected LayerMask layer;
+    protected RaycastHit2D hit;
+    protected override void ResetValue()
+    {
+        base.ResetValue();
+        this.ResetLayer();
+    }
+
+    protected virtual void ResetLayer()
+    {
+        if(ctrl is MonsterCtrl) layer = 1 << LayerMask.NameToLayer("Ground Weapon");
+        if(ctrl is WeaponCtrl) layer = 1 << LayerMask.NameToLayer("Ground Monster");
+        if (ctrl is ProjectileCtrl)
+        {
+            if(ctrl.transform.tag.Contains("Weapon")) layer = 1 << LayerMask.NameToLayer("Ground Monster");
+            else layer = 1 << LayerMask.NameToLayer("Ground Weapon");
+        }
+    }
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
         this.LoadCtrl();
-        this.LoadRigidbody();
-        this.LoadCollider();
+        
     }
 
     protected virtual void LoadCtrl()
@@ -19,44 +37,30 @@ public abstract class Radar : ComponentBehavior
         ctrl = transform.parent.GetComponent<EntityCtrl>();
         if(ctrl != null) Debug.Log(transform.name + " Load Ctrl successful");
     }
-    protected virtual void LoadRigidbody()
+
+    protected void Update()
     {
-        if (rb != null) return;
-        rb = transform.GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            ChangeRigidInfor();
-            var transform1 = transform;
-            Debug.Log(transform1.parent.name + " " + transform1.name + " Load Rigid successful");
-        }
-            
+        ScanRadar();
+       
+        if(IsEnemy()) ctrl.SetEnemyDetectedAction(hit.transform.GetComponent<DamageReceiver>());
     }
 
-    protected virtual void ChangeRigidInfor()
-    {
-        rb.bodyType = RigidbodyType2D.Kinematic;
-        rb.gravityScale = 0;
-    }
+    protected abstract void ScanRadar();
 
-    protected abstract void LoadCollider();
-    protected abstract void ChangeColliderInfor();
+   
 
-    protected void OnEnable()
+    protected bool IsEnemy()
     {
-        ChangeColliderInfor();
-    }
-
-    protected bool IsEnemy(Transform other)
-    {
+        if (hit.collider == null) return false;
         if (transform.tag.Contains("Projectile"))
         {
-            if (transform.gameObject.CompareTag("Weapon Projectile")) return other.tag.Contains("Monster");
-            else return other.tag.Contains("Weapon");
+            if (transform.gameObject.CompareTag("Weapon Projectile")) return hit.collider.tag.Contains("Monster");
+            else return hit.collider.tag.Contains("Weapon");
         }
 
         if (transform.tag.Contains("Monster"))
-            return other.tag.Contains("Weapon");
-        if (transform.tag.Contains("Weapon")) return other.tag.Contains("Monster");
+            return hit.collider.tag.Contains("Weapon");
+        if (transform.tag.Contains("Weapon")) return hit.collider.tag.Contains("Monster");
         return false;
     }
 }

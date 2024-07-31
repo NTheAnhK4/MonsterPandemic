@@ -89,7 +89,20 @@ public abstract class MonsterCtrl : EntityCtrl
             ));
     }
 
-   
+    public override void SetEnemyDetectedAction(DamageReceiver damageReceiver)
+    {
+        animMachine.ChangeAnim(new BasicAttackAnim(animator));
+        
+        if(data is VanguardMonsterData vanguardMonsterData)
+            actionMachine.ChangeAction(AttackFactory.CreateMeleeAttack(
+                vanguardMonsterData.Data[entityId].range,
+                vanguardMonsterData.Data[entityId].GetAttackSpeed(level),
+                vanguardMonsterData.Data[entityId].GetDamage(level),
+                damageReceiver
+                ));
+    }
+
+
     public override void SetDespawn()
     {
         animMachine.ChangeAnim(new BasicDeadAnim(animator));
