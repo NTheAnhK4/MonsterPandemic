@@ -6,12 +6,13 @@ public class ActionMachine
 {
     private IAction curAction;
 
-    public void ChangeAction(IAction newAction)
+    public bool ChangeAction(IAction newAction)
     {
-        if (curAction != null && newAction != null && newAction.GetType() == curAction.GetType()) return;
+        if (curAction != null && newAction != null && newAction.GetType() == curAction.GetType()) return false;
         if(curAction != null) curAction.Exit();
         curAction = newAction;
         if(curAction != null) curAction.Enter();
+        return true;
     }
 
     public void Update()
@@ -21,6 +22,11 @@ public class ActionMachine
         curAction.UpdatePhysis();
     }
 
+    public void SetSpeed(float newSpeed)
+    {
+        if (curAction is not Movement movement) return;
+        movement.Speed = newSpeed;
+    }
     public int GetAttackCount()
     {
         if (curAction is not Attack attack) return 0;

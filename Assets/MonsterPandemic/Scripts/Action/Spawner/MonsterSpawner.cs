@@ -9,18 +9,23 @@ public class MonsterSpawner : ComponentBehavior
     protected float timeSpawn = 2;
     protected override void Awake()
     {
-        totalMonsters = Random.Range(1, 33);
+        totalMonsters = Random.Range(1, 17);
         curMonster = 0;
+        this.AddListener(EventID.On_Finish_Wave, param => DestroyWave());
         StartCoroutine(SpawnMonster());
     }
 
     protected IEnumerator SpawnMonster()
     {
-        while (curMonster < 5)
+        while (curMonster < 4)
         {
             yield return new WaitForSeconds(timeSpawn);
-            if(((1 << curMonster) & totalMonsters) != 0)
+            if (((1 << curMonster) & totalMonsters) != 0)
+            {
                 VanguardMonsterSpawner.Instance.SpawnRandomObject(transform.position);
+                this.PostEvent(EventID.On_Spawn_Monster,1);
+            }
+                
             UpdateValue();
             
         }
@@ -30,5 +35,10 @@ public class MonsterSpawner : ComponentBehavior
     {
         curMonster++;
         timeSpawn = Random.Range(2, 3);
+    }
+
+    protected virtual void DestroyWave()
+    {
+        //WaveSpawner.Instance.DespawnObject(transform);
     }
 }

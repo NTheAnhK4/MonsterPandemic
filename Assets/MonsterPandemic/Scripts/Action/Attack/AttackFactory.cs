@@ -17,13 +17,13 @@ public static class AttackFactory
         return attack;
     }
 
-    public static Attack CreateRangedAttack(Range range,float attackSpeed, string bulletName, Vector3 pos)
+    public static Attack CreateRangedAttack(Range range,float attackSpeed, string bulletName, Vector3 pos, int level)
     {
         Attack attack = null;
         switch (range)
         {
             case Range.WholeLaneToTheRight:
-                attack = new WholeRightLaneAttack(attackSpeed, bulletName,pos);
+                attack = new WholeRightLaneAttack(attackSpeed, bulletName,pos, level);
                 break;
         }
         

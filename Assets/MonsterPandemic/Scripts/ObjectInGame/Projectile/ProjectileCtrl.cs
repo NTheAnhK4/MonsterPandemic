@@ -4,14 +4,6 @@ using UnityEngine;
 
 public abstract class ProjectileCtrl : EntityCtrl
 {
-    
-   
-   
-    protected override void ResetEntityType()
-    {
-        this.entityType = "Projectile";
-    }
-
     protected override void LoadData()
     {
         if (data != null) return;
@@ -20,7 +12,12 @@ public abstract class ProjectileCtrl : EntityCtrl
         if(data != null) Debug.Log(transform.name + " Load Data successful");
     }
 
-   
+    public override void ResetLevel(int newLevel)
+    {
+        base.ResetLevel(newLevel);
+        this.SetInitialAction();
+    }
+
     public override void SetInitialAction()
     {
         if (data is not ProjectileData projectileData)
@@ -55,7 +52,8 @@ public abstract class ProjectileCtrl : EntityCtrl
             0
             ));
     }
-
+    
+   
     protected override void OnEnable()
     {
         base.OnEnable();

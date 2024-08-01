@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class EntityCtrl : ComponentBehavior
 {
     [SerializeField] protected int entityId;
-    [SerializeField] protected string entityType;
+   
     [SerializeField] protected ScriptableObject data;
     [SerializeField] protected int level;
     protected float timeDespawn;
@@ -23,7 +23,7 @@ public abstract class EntityCtrl : ComponentBehavior
     {
         base.LoadComponent();
         this.ResetEntityId();
-        this.ResetEntityType();
+        
         this.ResetLevel();
         this.LoadData();
     }
@@ -35,7 +35,7 @@ public abstract class EntityCtrl : ComponentBehavior
     }
 
     protected abstract void ResetEntityId();
-    protected abstract void ResetEntityType();
+    
 
     protected abstract void LoadData();
 
@@ -44,6 +44,10 @@ public abstract class EntityCtrl : ComponentBehavior
         this.level = 1;
     }
 
+    public virtual void ResetLevel(int newLevel)
+    {
+        this.level = newLevel;
+    }
     protected virtual void ResetTimeDespawn()
     {
         

@@ -19,28 +19,7 @@ public abstract class MonsterCtrl : EntityCtrl
         this.LoadAnimator();
     }
 
-    protected override void LoadData()
-    {
-        if(data != null) return;
-        string resPath = "Monster/";
-        switch (entityType)
-        {
-            case "VanguardMonster":
-                resPath += "VanguardMonsterData";
-                break;
-            case "RangedMonster":
-                resPath += "RangedMonsterData";
-                break;
-            case "ToughMonster":
-                resPath += "ToughtMonsterData";
-                break;
-                
-        }
-
-        data = Resources.Load<ScriptableObject>(resPath);
-        if(data != null)
-            Debug.Log(transform.name + " Load Data successful");
-    }
+    
 
     protected virtual void LoadAnimator()
     {
@@ -65,13 +44,7 @@ public abstract class MonsterCtrl : EntityCtrl
     public override void SetInitialAction()
     {
         animMachine.ChangeAnim(new BasicMoveAnim(animator));
-        if (data is VanguardMonsterData vanguard)
-            actionMachine.ChangeAction(MovementFactory.CreateMovement(
-                vanguard.Data[entityId].moveType,
-                transform,
-                vanguard.Data[entityId].GetSpeed(level),
-                Vector3.left
-            ));
+        
         
         if(data is RangedMonsterData ranged)
             actionMachine.ChangeAction(MovementFactory.CreateMovement(
@@ -93,13 +66,7 @@ public abstract class MonsterCtrl : EntityCtrl
     {
         animMachine.ChangeAnim(new BasicAttackAnim(animator));
         
-        if(data is VanguardMonsterData vanguardMonsterData)
-            actionMachine.ChangeAction(AttackFactory.CreateMeleeAttack(
-                vanguardMonsterData.Data[entityId].range,
-                vanguardMonsterData.Data[entityId].GetAttackSpeed(level),
-                vanguardMonsterData.Data[entityId].GetDamage(level),
-                damageReceiver
-                ));
+       
     }
 
 
@@ -107,20 +74,12 @@ public abstract class MonsterCtrl : EntityCtrl
     {
         animMachine.ChangeAnim(new BasicDeadAnim(animator));
         
-        actionMachine.ChangeAction(new MonsterDespawner(
-            transform,
-            timeDespawn,
-            entityType
-            ));
-        
-        
     }
 
    
     protected override void Update()
     {
         base.Update();
-        
         if(isDead) SetDespawn();
     }
 }

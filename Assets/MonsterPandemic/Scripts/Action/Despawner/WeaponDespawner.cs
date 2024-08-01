@@ -18,6 +18,9 @@ public class WeaponDespawner : Despawner
             case "RangedWeapon":
                 RangedWeaponSpawner.Instance.DespawnObject(_obj);
                 return;
+            case "ToughWeapon":
+                ToughWeaponSpawner.Instance.DespawnObject(_obj);
+                return;
         }
     }
 }

@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84136890baa659a41b281703658e59be, type: 3}
   m_Name: ToughWeaponData
   m_EditorClassIdentifier: 
-  Data: []
+  Data:
+  - level: 1
+    name: Wood Box
+    range: 7
+    maxHp: 50
+    hpGrowthRate: 1
+    usage: 0
+    armor: 0.1
+    armorGrowthRate: 0.01

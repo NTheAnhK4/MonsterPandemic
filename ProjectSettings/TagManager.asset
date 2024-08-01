@@ -8,6 +8,7 @@ TagManager:
   - Weapon Projectile
   - Monster Projectile
   - Ranged Weapon
+  - Tough Weapon
   layers:
   - Default
   - TransparentFX

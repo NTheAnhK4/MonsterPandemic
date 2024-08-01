@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class LevelManager : ComponentBehavior
 {
     [SerializeField] protected float timeSpawn = 1f;
+    [SerializeField] protected float timer = 0f;
     
     protected int minWave = 6;
     protected int maxWave = 12;
@@ -17,22 +18,27 @@ public class LevelManager : ComponentBehavior
     {
         totalWaves = Random.Range(minWave, maxWave);
         curWave = 0;
+        timer = 0f;
+        this.AddListener(EventID.On_Finish_Wave, param => SpawnWave());
     }
 
-    protected override void Start()
+    private void Update()
     {
-        StartCoroutine(SpawnWave());
+        timer += Time.deltaTime;
+        if (timer >= timeSpawn) SpawnWave();
     }
 
-    protected IEnumerator SpawnWave()
-    {
-        while (curWave <= totalWaves)
-        {
-            yield return new WaitForSeconds(timeSpawn);
-            curWave++;
-            timeSpawn = Math.Min(timeSpawn + 5, 15);
-            this.PostEvent(EventID.On_Random_Spawn_Next_Wave,curWave);
-        }
-    }
+    protected virtual void SpawnWave()
+   {
+       if (curWave >= totalWaves)
+       {
+           Debug.Log("You Win");
+           return;
+       }
+       curWave++;
+       timer = 0f;
+       timeSpawn = 20 + 60.0f / curWave;
+       this.PostEvent(EventID.On_Random_Spawn_Next_Wave,curWave);
+   }
    
 }

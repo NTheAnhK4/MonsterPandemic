@@ -1,6 +1,6 @@
 
 
-public class MaleWalkerMonsterCtrl : MonsterCtrl
+public class MaleWalkerMonsterCtrl : VanguardMonsterCtrl
 {
     
 
@@ -9,10 +9,7 @@ public class MaleWalkerMonsterCtrl : MonsterCtrl
         this.entityId = 0;
     }
 
-    protected override void ResetEntityType()
-    {
-        this.entityType = "VanguardMonster";
-    }
+   
 
     protected override void ResetTimeDespawn()
     {

@@ -10,6 +10,7 @@ public class DamageReceiver : ComponentBehavior
     [SerializeField] protected BoxCollider2D boxCollider2D;
     [SerializeField] protected float maxHp;
     [SerializeField] protected float curHp;
+    [SerializeField] protected float armor;
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -57,13 +58,14 @@ public class DamageReceiver : ComponentBehavior
     {
         boxCollider2D.isTrigger = true;
         boxCollider2D.offset = new Vector2(0, 0f);
-        boxCollider2D.size = new Vector2(0.25f, 1f);
+        boxCollider2D.size = new Vector2(1f, 1f);
     }
 
     protected override void ResetValue()
     {
         base.ResetValue();
         this.ResetMaxHp();
+        this.ResetArmor();
     }
 
     protected virtual void ResetMaxHp()
@@ -71,6 +73,16 @@ public class DamageReceiver : ComponentBehavior
         if(ctrl is MonsterCtrl) ResetMonsterMaxHp();
         else ResetWeaponMaxHp();
         curHp = maxHp;
+    }
+
+    protected virtual void ResetArmor()
+    {
+        armor = ctrl.Data switch
+        {
+            ToughMonsterData toughMonsterData => toughMonsterData.Data[ctrl.EntityId].GetArmor(ctrl.Level),
+            ToughWeaponData toughWeaponData => toughWeaponData.Data[ctrl.EntityId].GetArmor(ctrl.Level),
+            _ => 0
+        };
     }
 
     protected virtual void ResetMonsterMaxHp()
@@ -98,6 +110,7 @@ public class DamageReceiver : ComponentBehavior
 
     public void Deduct(float damage)
     {
+        damage = Math.Max(0, damage - armor);
         curHp -= damage;
         if(curHp <= 0)
             OnDead();
