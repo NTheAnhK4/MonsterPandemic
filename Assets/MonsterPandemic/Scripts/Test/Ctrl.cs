@@ -1,14 +1,11 @@
 
+using System;
 using UnityEngine;
 
 public class Ctrl : ComponentBehavior
 {
-   private void Update()
+   private void OnTriggerEnter2D(Collider2D other)
    {
-      if (Input.GetKeyDown(KeyCode.A))
-      {
-         
-         ProjectileSpawner.Instance.SpawnRandomObject(Vector3.zero);
-      }
+      Debug .Log("Ee");
    }
 }
