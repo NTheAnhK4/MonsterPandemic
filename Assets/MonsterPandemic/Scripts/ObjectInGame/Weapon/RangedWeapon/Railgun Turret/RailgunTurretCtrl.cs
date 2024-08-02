@@ -17,6 +17,6 @@ public class RailgunTurretCtrl : RangedWeaponCtrl
 
     protected override void ResetLevel()
     {
-        this.level = 1;
+        this.level = 50;
     }
 }

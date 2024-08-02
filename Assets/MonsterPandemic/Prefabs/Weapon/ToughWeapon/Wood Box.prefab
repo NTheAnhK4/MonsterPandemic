@@ -123,6 +123,7 @@ MonoBehaviour:
   boxCollider2D: {fileID: 31244116542058013}
   maxHp: 50
   curHp: 50
+  armor: 0
 --- !u!1 &6786383944246745100
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,7 +246,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7698631219069462588
 Transform:
   m_ObjectHideFlags: 0
@@ -279,3 +280,5 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: d1df99595aeeeb14e87c00967d76ec2f, type: 2}
   level: 1
   animator: {fileID: 7346630379810282398}
+  damageReceiver: {fileID: 939489516732928416}
+  spriteRenderer: {fileID: 628695587091961837}

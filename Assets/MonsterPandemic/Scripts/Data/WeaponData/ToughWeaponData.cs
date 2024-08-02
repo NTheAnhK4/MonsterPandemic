@@ -13,6 +13,7 @@ public class ToughWeaponParam : WeaponParam
 {
     public float armor;
     public float armorGrowthRate;
+    public List<Sprite> HurtSprites;
 
     public float GetArmor(int objectLevel)
     {

@@ -20,6 +20,7 @@ public class WeaponDespawner : Despawner
                 return;
             case "ToughWeapon":
                 ToughWeaponSpawner.Instance.DespawnObject(_obj);
+                
                 return;
         }
     }

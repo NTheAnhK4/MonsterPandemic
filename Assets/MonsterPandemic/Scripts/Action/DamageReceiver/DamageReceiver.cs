@@ -11,6 +11,10 @@ public class DamageReceiver : ComponentBehavior
     [SerializeField] protected float maxHp;
     [SerializeField] protected float curHp;
     [SerializeField] protected float armor;
+
+    public float CurHp => curHp;
+
+    public float MaxHp => maxHp;
     protected override void LoadComponent()
     {
         base.LoadComponent();

@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class MonsterCtrl : EntityCtrl
 {
     [SerializeField] protected Animator animator;
+    [SerializeField] protected SpriteRenderer spriteRenderer;
     protected AnimMachine animMachine;
     protected bool isDead;
 
@@ -13,10 +14,20 @@ public abstract class MonsterCtrl : EntityCtrl
         get => isDead;
         set => isDead = value;
     }
+
+    public SpriteRenderer SpriteRenderer => spriteRenderer;
     protected override void LoadComponent()
     {
         base.LoadComponent();
         this.LoadAnimator();
+        this.LoadSpriteRenderer();
+    }
+    protected virtual void LoadSpriteRenderer()
+    {
+        if (spriteRenderer != null) return;
+        spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
+        if(spriteRenderer != null)
+            Debug.Log(transform.name + " Load SpriteRenderer successful");
     }
 
     

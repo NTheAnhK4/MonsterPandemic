@@ -22,7 +22,8 @@ public class MonsterSpawner : ComponentBehavior
             yield return new WaitForSeconds(timeSpawn);
             if (((1 << curMonster) & totalMonsters) != 0)
             {
-                VanguardMonsterSpawner.Instance.SpawnRandomObject(transform.position);
+                MonsterCtrl monsterCtrl = VanguardMonsterSpawner.Instance.SpawnRandomObject(transform.position).GetComponent<MonsterCtrl>();
+                monsterCtrl.SpriteRenderer.sortingOrder = 5 - (int)((transform.position.y + 3) / 1.5f);
                 this.PostEvent(EventID.On_Spawn_Monster,1);
             }
                 

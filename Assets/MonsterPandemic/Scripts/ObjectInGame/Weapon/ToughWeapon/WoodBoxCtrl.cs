@@ -9,5 +9,8 @@ public class WoodBoxCtrl : ToughWeaponCtrl
         this.entityId = 0;
     }
 
-   
+    protected override void ResetTimeDespawn()
+    {
+        this.timeDespawn = 0;
+    }
 }

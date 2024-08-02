@@ -21,3 +21,9 @@ MonoBehaviour:
     usage: 0
     armor: 0.1
     armorGrowthRate: 0.01
+    HurtSprites:
+    - {fileID: -1618881345, guid: b81715ded57b5f04a9df6dde5073c9f2, type: 3}
+    - {fileID: 621044725, guid: b81715ded57b5f04a9df6dde5073c9f2, type: 3}
+    - {fileID: 2041823835, guid: b81715ded57b5f04a9df6dde5073c9f2, type: 3}
+    - {fileID: -1981769728, guid: b81715ded57b5f04a9df6dde5073c9f2, type: 3}
+    - {fileID: 1687097043, guid: b81715ded57b5f04a9df6dde5073c9f2, type: 3}

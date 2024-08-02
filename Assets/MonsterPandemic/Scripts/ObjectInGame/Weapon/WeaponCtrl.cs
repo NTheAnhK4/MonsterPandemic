@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class WeaponCtrl : EntityCtrl
 {
     [SerializeField] protected Animator animator;
-    
+    [SerializeField] protected DamageReceiver damageReceiver;
     protected AnimMachine animMachine;
     protected bool isDead;
     public bool IsDead
@@ -16,6 +16,7 @@ public abstract class WeaponCtrl : EntityCtrl
     {
         base.LoadComponent();
         this.LoadAnimator();
+        this.LoadDamageReceiver();
     }
     protected virtual void LoadAnimator()
     {
@@ -25,6 +26,13 @@ public abstract class WeaponCtrl : EntityCtrl
             Debug.Log(transform.name + " Load Animator successful");
     }
 
+    protected virtual void LoadDamageReceiver()
+    {
+        if (damageReceiver != null) return;
+        damageReceiver = transform.GetComponentInChildren<DamageReceiver>();
+        if(damageReceiver != null)
+            Debug.Log(transform.name + " Load DamageReceiver successful");
+    }
     public override void SetInitialAction()
     {
         animMachine.ChangeAnim(new IdleAnim(animator));

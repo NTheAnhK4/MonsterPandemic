@@ -4,6 +4,21 @@ using UnityEngine;
 
 public abstract class ToughWeaponCtrl : WeaponCtrl
 {
+    [SerializeField] protected SpriteRenderer spriteRenderer;
+    protected override void LoadComponent()
+    {
+        base.LoadComponent();
+        this.LoadSpriteRenderer();
+    }
+
+    protected virtual void LoadSpriteRenderer()
+    {
+        if (spriteRenderer != null) return;
+        spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
+        if(spriteRenderer != null)
+            Debug.Log(transform.name + " Load SpriteRenderer successful");
+    }
+
     protected override void LoadData()
     {
         if (data != null) return;
@@ -15,6 +30,13 @@ public abstract class ToughWeaponCtrl : WeaponCtrl
     public override void SetInitialAction()
     {
         base.SetInitialAction();
+        if (data is not ToughWeaponData toughWeaponData)
+        {
+            Debug.LogError("Load data error");
+            return;
+        }
+
+        actionMachine.ChangeAction(new DefenseAction(damageReceiver, spriteRenderer, toughWeaponData.Data[entityId].HurtSprites));
     }
 
     public override void SetEnemyDetectedAction(DamageReceiver damageReceiver)
