@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class LevelManager : ComponentBehavior
 {
+    private static LevelManager instance;
     [SerializeField] protected float timeSpawn = 1f;
     [SerializeField] protected float timer = 0f;
     
@@ -14,9 +15,19 @@ public class LevelManager : ComponentBehavior
     protected int maxWave = 12;
     [SerializeField] protected int totalWaves;
     [SerializeField] protected int curWave;
+
+    public static LevelManager Instance => instance;
+
+    public int CurWave => curWave;
+
+    public int TotalWaves => totalWaves;
     protected override void Awake()
     {
+        if(instance != null)
+            Debug.LogError("Only 1 level manager allow to exist");
+        instance = this;
         totalWaves = Random.Range(minWave, maxWave);
+        MonsterJourneyUI.Instance.ResetMaxValue(totalWaves);
         curWave = 0;
         timer = 0f;
         this.AddListener(EventID.On_Finish_Wave, param => SpawnWave());
