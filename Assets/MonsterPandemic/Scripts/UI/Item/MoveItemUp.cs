@@ -66,7 +66,7 @@ public class MoveItemUp : ComponentBehavior
     {
         _boxCollider2D.isTrigger = true;
         _boxCollider2D.offset = new Vector2(0, 0);
-        _boxCollider2D.size = new Vector2(1, 1.2f);
+        _boxCollider2D.size = new Vector2(1, 1.1f);
     }
 
     

@@ -9,8 +9,19 @@ public class SpawnRandomWeaponItem : ComponentBehavior
     [SerializeField] protected float coolDown = 0f;
     [SerializeField] protected int maxItem = 5;
     [SerializeField] protected int curNumItem = 0;
+    private static SpawnRandomWeaponItem instance;
+
+    public static SpawnRandomWeaponItem Instance => instance;
+    public int CurNumItem
+    {
+        get => curNumItem;
+        set => curNumItem = value;
+    }
     protected override void Awake()
     {
+        if(instance != null)
+            Debug.LogError("Error");
+        instance = this;
         timeSpawn = 5f;
         coolDown = 0f;
         maxItem = 5;
@@ -34,6 +45,7 @@ public class SpawnRandomWeaponItem : ComponentBehavior
         curNumItem++;
     }
 
+    
     private void Update()
     {
         if (curNumItem > maxItem) return;

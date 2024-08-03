@@ -319,9 +319,9 @@ GameObject:
   - component: {fileID: 252304650}
   - component: {fileID: 252304649}
   - component: {fileID: 252304651}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: BackGround
-  m_TagString: Untagged
+  m_TagString: LandTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layer:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 256
 --- !u!4 &302040443
 Transform:
   m_ObjectHideFlags: 0
@@ -521,6 +521,51 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302040441}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &332913532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 332913534}
+  - component: {fileID: 332913533}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &332913533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332913532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d1aca7b1a1ca4d4c9f832178aafe32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedObject: {fileID: 0}
+--- !u!4 &332913534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332913532}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1483,9 +1528,10 @@ GameObject:
   - component: {fileID: 1218240436}
   - component: {fileID: 1218240435}
   - component: {fileID: 1218240434}
+  - component: {fileID: 1218240437}
   m_Layer: 8
   m_Name: Railgun Turret Item
-  m_TagString: Untagged
+  m_TagString: Weapon Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1652,6 +1698,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.2}
   m_EdgeRadius: 0
+--- !u!114 &1218240437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218240429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a6feb768ec4844d840ef4ec9b37ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityType: RangedWeapon
+  entityName: Railgun Turret
+  _spriteRenderer: {fileID: 1218240433}
 --- !u!1 &1234709740
 GameObject:
   m_ObjectHideFlags: 0
@@ -2670,6 +2731,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 252304650}
   - {fileID: 302040443}
+  - {fileID: 332913534}
   - {fileID: 1611210959}
   - {fileID: 272791454}
   - {fileID: 490774767}

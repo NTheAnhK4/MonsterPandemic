@@ -5,8 +5,14 @@ public class InputCtrl : ComponentBehavior
 {
     private static InputCtrl instance;
 
-    public static InputCtrl Instance => instance;
+   
     [SerializeField] private LayerMask layer;
+    private Vector3 inputPos;
+    private RaycastHit2D hit;
+    public static InputCtrl Instance => instance;
+    public RaycastHit2D Hit => hit;
+
+    public Vector3 InputPos => inputPos;
     protected override void Awake()
     {
         if(instance != null)
@@ -22,18 +28,17 @@ public class InputCtrl : ComponentBehavior
 
     private void ResetLayer()
     {
-        layer = LayerMask.GetMask("Weapon Item", "Ground");
+        layer = LayerMask.GetMask("Ground");
     }
 
     private void Update()
     {
+        inputPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 inputPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             inputPos.z = -1;
-            RaycastHit2D hit = Physics2D.Raycast(inputPos, Vector3.forward, 3, layer);
-            if(hit.collider != null)
-                Debug.Log(hit.collider.tag);
+            hit = Physics2D.Raycast(inputPos, Vector3.forward, 3, layer);
+            if(hit.collider.CompareTag("LandTile")) ItemManager.Instance.CreateNewObject(inputPos, hit.collider.transform);
         }
     }
 }

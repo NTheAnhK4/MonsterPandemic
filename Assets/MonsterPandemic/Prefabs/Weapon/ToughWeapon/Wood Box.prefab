@@ -240,21 +240,21 @@ GameObject:
   m_Component:
   - component: {fileID: 7698631219069462588}
   - component: {fileID: 2441738003755425949}
+  - component: {fileID: 8484138186167763335}
   m_Layer: 0
   m_Name: Wood Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7698631219069462588
-Transform:
+  m_IsActive: 0
+--- !u!224 &7698631219069462588
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7748158163687961071}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -264,6 +264,11 @@ Transform:
   - {fileID: 8396112560025845062}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2441738003755425949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,3 +287,17 @@ MonoBehaviour:
   animator: {fileID: 7346630379810282398}
   damageReceiver: {fileID: 939489516732928416}
   spriteRenderer: {fileID: 628695587091961837}
+--- !u!114 &8484138186167763335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7748158163687961071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 3
+  m_AspectRatio: 1
