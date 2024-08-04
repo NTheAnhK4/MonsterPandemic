@@ -13,9 +13,9 @@ public abstract class VanguardMonsterCtrl : MonsterCtrl
              Debug.Log(transform.name + " Load Data successful");
     }
 
-    public override void SetInitialAction()
+    public override void SetPrepareAction()
     {
-        base.SetInitialAction();
+        base.SetPrepareAction();
         if (data is not VanguardMonsterData vanguard)
         {
             Debug.LogError("Load Data error");
@@ -24,9 +24,20 @@ public abstract class VanguardMonsterCtrl : MonsterCtrl
         actionMachine.ChangeAction(MovementFactory.CreateMovement(
             vanguard.Data[entityId].moveType,
             transform,
-            vanguard.Data[entityId].GetSpeed(level),
+           100,
             Vector3.left
         ));
+    }
+
+    public override void SetInitialAction()
+    {
+        base.SetInitialAction();
+        if (data is not VanguardMonsterData vanguard)
+        {
+            Debug.LogError("Load Data error");
+            return;
+        }
+        actionMachine.SetSpeed( vanguard.Data[entityId].GetSpeed(level));
     }
 
     public override void SetEnemyDetectedAction(DamageReceiver damageReceiver)

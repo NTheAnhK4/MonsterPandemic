@@ -63,12 +63,16 @@ public abstract class EntityCtrl : ComponentBehavior
         actionMachine.Update();
     }
 
+
+    public virtual void SetPrepareAction()
+    {
+        
+    }
+    public abstract void SetInitialAction();
+    public abstract void SetEnemyDetectedAction(DamageReceiver damageReceiver);
     public virtual void SetDespawn()
     {
         
     }
-
-    public abstract void SetInitialAction();
-    public abstract void SetEnemyDetectedAction(DamageReceiver damageReceiver);
 
 }

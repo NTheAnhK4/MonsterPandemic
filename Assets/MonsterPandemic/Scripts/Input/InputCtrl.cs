@@ -33,12 +33,13 @@ public class InputCtrl : ComponentBehavior
 
     private void Update()
     {
-        inputPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (Camera.main != null) inputPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetMouseButtonDown(0))
         {
             inputPos.z = -1;
             hit = Physics2D.Raycast(inputPos, Vector3.forward, 3, layer);
-            if(hit.collider.CompareTag("LandTile")) ItemManager.Instance.CreateNewObject(inputPos, hit.collider.transform);
+            if (hit.collider == null) return;
+            if(hit.collider.CompareTag("LandTile") && hit.collider.transform.childCount == 0) ItemManager.Instance.CreateNewObject(inputPos, hit.collider.transform);
         }
     }
 }

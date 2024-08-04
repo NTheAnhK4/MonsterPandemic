@@ -48,9 +48,15 @@ public abstract class MonsterCtrl : EntityCtrl
         base.OnEnable();
         animMachine = new AnimMachine();
         isDead = false;
-        SetInitialAction();
+        SetPrepareAction();
        
     }
+
+    public override void SetPrepareAction()
+    {
+        animMachine.ChangeAnim(new BasicMoveAnim(animator));
+    }
+
 
     public override void SetInitialAction()
     {
@@ -91,6 +97,7 @@ public abstract class MonsterCtrl : EntityCtrl
     protected override void Update()
     {
         base.Update();
+        if(transform.position.y <= 8 && !isDead) SetInitialAction();
         if(isDead) SetDespawn();
     }
 }

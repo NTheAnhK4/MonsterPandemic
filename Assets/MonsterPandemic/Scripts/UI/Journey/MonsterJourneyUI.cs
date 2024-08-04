@@ -38,6 +38,7 @@ public class MonsterJourneyUI : ComponentBehavior
 
     private void Update()
     {
-        if (slider.value < LevelManager.Instance.CurWave) slider.value += Time.deltaTime/20;
+        if (slider.value + 1 >= LevelManager.Instance.CurWave) slider.value += Time.deltaTime / 20;
+        else slider.value += 0.25f;
     }
 }
