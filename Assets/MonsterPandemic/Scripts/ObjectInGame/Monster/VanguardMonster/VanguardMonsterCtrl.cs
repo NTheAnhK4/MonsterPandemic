@@ -24,7 +24,7 @@ public abstract class VanguardMonsterCtrl : MonsterCtrl
         actionMachine.ChangeAction(MovementFactory.CreateMovement(
             vanguard.Data[entityId].moveType,
             transform,
-           100,
+           50,
             Vector3.left
         ));
     }
