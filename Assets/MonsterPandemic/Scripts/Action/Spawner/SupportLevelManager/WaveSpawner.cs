@@ -34,7 +34,7 @@ public class WaveSpawner : Spawner
         {
             if (((1 << i) & type) != 0)
             {
-                SpawnRandomObject(new Vector3(maxHorizontal, 1.5f * i - 3, 0));
+                SpawnRandomObject(new Vector3(maxHorizontal, 1.5f * i - 3, 20));
             }
         }
     }

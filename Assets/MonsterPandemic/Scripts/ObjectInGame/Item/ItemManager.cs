@@ -26,6 +26,7 @@ public class ItemManager : ComponentBehavior
     {
         if (selectedObject == null) return;
         SpawnRandomWeaponItem.Instance.CurNumItem--;
+        pos.z = 20;
         switch (selectedObject.EntityType)
         {
             case "RangedWeapon":
