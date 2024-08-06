@@ -8,9 +8,9 @@ public class MoveItemUp : ComponentBehavior
 {
     [SerializeField] private BoxCollider2D _boxCollider2D;
     [SerializeField] private Rigidbody2D _rigidbody2D;
-    [SerializeField] private RectTransform item;
-    [SerializeField] protected float speed = 100f;
-    [SerializeField] private float padding = 2f;
+    
+    [SerializeField] protected float speed = 1f;
+   
     private enum  State
     {
         ScrollUp,
@@ -23,16 +23,10 @@ public class MoveItemUp : ComponentBehavior
         base.LoadComponent();
         this.LoadCollider();
         this.LoadRigid();
-        this.LoadRectTransform();
+        
     }
 
-    private void LoadRectTransform()
-    {
-        if (item != null) return;
-        item = transform.GetComponent<RectTransform>();
-        if(item != null)
-            Debug.Log(transform.name + " Load RectTransform successful");
-    }
+  
 
     private void LoadCollider()
     {
@@ -74,20 +68,14 @@ public class MoveItemUp : ComponentBehavior
     private void OnEnable()
     {
         curState = State.ScrollUp;
-        this.ResetInitiallyIndex();
-        
     }
 
-    private void ResetInitiallyIndex()
-    {
-        item.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,transform.parent.GetComponent<RectTransform>().rect.width - padding);
-        item.anchoredPosition = new Vector2(item.anchoredPosition.x, -Screen.height + 500);
-    }
+   
     
 
     private void ScrollUp()
     {
-        item.anchoredPosition += new Vector2(0, speed * Time.deltaTime);
+        transform .Translate(Vector3.up * (speed * Time.deltaTime));
 
     }
 
