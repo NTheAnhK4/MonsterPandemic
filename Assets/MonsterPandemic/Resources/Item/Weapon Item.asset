@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Weapon Item
   m_EditorClassIdentifier: 
   data:
-  - id: 0
+  - id: 0001000000
     name: Railgun Turret
     sprite: {fileID: 1789936648, guid: 4942ef5148eae51458138b2c6eaeb7a7, type: 3}
-    entityType: RangedWeapon

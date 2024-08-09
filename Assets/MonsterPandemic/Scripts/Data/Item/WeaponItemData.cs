@@ -11,5 +11,5 @@ public class WeaponItemData : ScriptableObject
 [Serializable]
 public class WeaponItemParam : ItemParam
 {
-    public string entityType;
+    
 }

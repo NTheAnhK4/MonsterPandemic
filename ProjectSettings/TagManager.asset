@@ -48,3 +48,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Entity
+    uniqueID: 296475905
+    locked: 0
+  - name: Item
+    uniqueID: 1490814963
+    locked: 0
+  - name: UI
+    uniqueID: 3373637971
+    locked: 0
+  - name: UIOnTop
+    uniqueID: 985094159
+    locked: 0
